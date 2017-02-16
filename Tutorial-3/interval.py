@@ -101,14 +101,14 @@ class IntervalTree:
                     else:
                         self.root.rightSubTree = righttemp
                    
-                    if not lefttemp and not righttemp:
+                    if not self.root.leftSubTree and not self.root.rightSubTree:
                         pass
-                    elif not lefttemp and not (not righttemp):
-                        self.root.maxInSubTree = righttemp.root.maxInSubTree
+                    elif not self.root.leftSubTree and not (not self.root.rightSubTree):
+                        self.root.maxInSubTree = self.root.rightSubTree.root.maxInSubTree
                     elif not (not lefttemp) and not righttemp:
-                        self.root.maxInSubTree = lefttemp.root.maxInSubTree
-                    else:
-                        pass
+                        self.root.maxInSubTree = self.root.leftSubTree.root.maxInSubTree
+                    elif self.root.leftSubTree != None and self.root.rightSubTree!= None:
+                        self.root.maxInSubTree = max(self.root.leftSubTree.root.maxInSubTree,self.root.rightSubTree.root.maxInSubTree)
                         
 
                 else:
@@ -119,15 +119,14 @@ class IntervalTree:
                     else:
                         self.root.rightSubTree = self.root.rightSubTree
 
-                    if not lefttemp and not righttemp:
+                    if not self.root.leftSubTree and not self.root.rightSubTree:
                         pass
-                    elif not lefttemp and not (not righttemp):
-                        self.root.maxInSubTree = righttemp.root.maxInSubTree
+                    elif not self.root.leftSubTree and not (not self.root.rightSubTree):
+                        self.root.maxInSubTree = self.root.rightSubTree.root.maxInSubTree
                     elif not (not lefttemp) and not righttemp:
-                        self.root.maxInSubTree = lefttemp.root.maxInSubTree
-                    else:
-                        pass
-
+                        self.root.maxInSubTree = self.root.leftSubTree.root.maxInSubTree
+                    elif self.root.leftSubTree != None and self.root.rightSubTree!= None:
+                        self.root.maxInSubTree = max(self.root.leftSubTree.root.maxInSubTree,self.root.rightSubTree.root.maxInSubTree)
                 
                 self.delete(leftmostSubChildOfTheRightNode.root.interval)
 
@@ -153,7 +152,15 @@ class IntervalTree:
 
 
     def search(self, interval):
-        return
+        x = self.root
+        while (self.root!= None and (self.root.low>max(i for i in interval) or self.root.high<min(i for i in interval)):
+               if (self.root.leftSubTree!=None and min(i for i in interval)<self.root.maxInSubTree):
+                   x = self.root.leftSubTree.root
+               else:
+                   x = self.root.rightSubTree.root
+        return x
+            
+                                    
    
 
 if __name__ == '__main__':
@@ -166,7 +173,7 @@ if __name__ == '__main__':
     for data in sampleData[1:]:
         tree.insert(IntervalNode(data))
 
-'''
+
     print tree.root.__dict__
 
     print tree.root.leftSubTree.root.__dict__
@@ -176,11 +183,12 @@ if __name__ == '__main__':
     print tree.root.leftSubTree.root.rightSubTree.root.__dict__
 
     print tree.root.rightSubTree.root.rightSubTree.root.__dict__        
-'''
+
     
     tree.delete({10,30})
-    
-'''   
+
+    print "===========================\n"*2
+
     print tree.root.__dict__
 
     print tree.root.leftSubTree.root.__dict__
@@ -188,4 +196,4 @@ if __name__ == '__main__':
 
     print tree.root.leftSubTree.root.leftSubTree.root.__dict__
     print tree.root.rightSubTree.root.rightSubTree.root.__dict__
-'''
+
