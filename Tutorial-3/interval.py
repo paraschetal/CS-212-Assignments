@@ -173,27 +173,8 @@ if __name__ == '__main__':
     for data in sampleData[1:]:
         tree.insert(IntervalNode(data))
 
-
-    print tree.root.__dict__
-
-    print tree.root.leftSubTree.root.__dict__
-    print tree.root.rightSubTree.root.__dict__
-
-    print tree.root.leftSubTree.root.leftSubTree.root.__dict__
-    print tree.root.leftSubTree.root.rightSubTree.root.__dict__
-
-    print tree.root.rightSubTree.root.rightSubTree.root.__dict__        
-
     
     tree.delete({10,30})
 
-    print "===========================\n"*2
 
-    print tree.root.__dict__
-
-    print tree.root.leftSubTree.root.__dict__
-    print tree.root.rightSubTree.root.__dict__
-
-    print tree.root.leftSubTree.root.leftSubTree.root.__dict__
-    print tree.root.rightSubTree.root.rightSubTree.root.__dict__
 
