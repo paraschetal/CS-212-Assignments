@@ -1,0 +1,99 @@
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[a4paper,left=3cm,right=2cm,top=1cm,bottom=2.5cm]{geometry}
+\usepackage{listings}
+\usepackage{amsmath}
+
+\title{\textbf{Tutorial-2, CSN-212}}
+\author{Paras Chetal, Enrollment No. 15114049}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+
+\section*{4.1}
+\subsection*{4.1 (b) \(T(n) = T(7n/10) + n\)}
+
+
+Let no. of terms = k
+
+\begin{gather*}
+  
+  \left(\frac{7}{10}\right)^kn = 1 \implies k = log_\frac{10}{7} n\\[8]
+  
+  T(n) = n + \left(\frac{7}{10}\right) n + \left(\frac{7}{10}\right)^2n + \left(\frac{7}{10}\right)^3n \quad ... \quad (k \log{\frac{10}{7}}{n}\quad times)\\[8]
+
+  We know, \quad \sum\limits_{r=0}^k \left(\frac{7}{10}\right)^r = \frac{\left(1-\left(\frac{7}{10}\right)^{log_\frac{10}{7} n}\right)}{\left(1 - \frac{7}{10}\right)}
+\\[16]
+\implies T(n) & = \frac{10}{3} n(1 - n^{-1})
+& = \frac{10}{3} (n-1)
+\\[16]
+\implies O(n)
+
+\subsection*{4.1 (c) \(T(n) = 16T(n/4) + n^2\)}
+Let no. of terms = k\\[8]
+k = log_4 n\\[8]
+\begin{gather*}
+
+  T(n) = n^2 + 16(n^2/16 + T(n/4^2))\\[8]
+
+  T(n) = n^2 + n^2 + 16^2(n^2/16^2 + 16(T/4^3)\\[8]
+  
+  T(n) = kn^2 + 16^kT(1) \\[8]
+\implies T(n) = n^2log_4 n + 16^{log_4 n}T(1)\\[8]
+\implies O(n^2logn)
+
+\end{gather*}
+
+\subsection*{4.1 (f) \(T(n) = 2T(n/4) + \sqrt{n}\)}
+Let no. of terms = k\\[8]
+k = log_4 n\\[8]
+
+\begin{gather*}
+  T(n) = \sqrt{n} + 2(\sqrt{\frac{n}{4}} + 2T(n/4^2))\\[8]
+
+  T(n) = \sqrt{n} + \sqrt{n} + 2^2(\sqrt{n}\2^2 + 2(T/4^3)\\[8]
+  
+  T(n) = k\sqrt{n} + 2^kT(1) \\[8]
+\implies T(n) = \sqrt{n}log_4 n + 2^{log_4 n}T(1)\\[8]
+\implies O(\sqrt{n}logn)
+\end{gather*}
+
+\subsection*{4.1 (g) \(T(n) = T(n-2) + n^2\)}
+Let no. of terms = k\\[8]
+n -2k = 1\\[8]
+k = (n-1)/2\\[8]
+
+\begin{gather*}
+  
+  T(n) = n^2 + (n-2)^2 + (n-3)^2 \quad ... \quad (k \quad times)\\[8]
+  
+  T(n) = \sum_{r = 0}^{k}(n^2 -4rn + 4r^2)\\[8]
+  
+  T(n) = n^2k -4n\frac{k(k-1)}{2} + 4\frac{k(k+1)(2k+1)}{6}}\\[8]
+\end{gather*}
+Since k = \Theta(n)
+
+\implies O(n^3)
+
+\section*{4.2}
+\subsection*{4.2 (a) \(T(n) = 4T(n/3) + nlogn\)}
+Let no. of terms = k\\[8]
+k = log_3 n\\[8]
+
+\begin{gather*}
+  
+  T(n) = nlogn + 4(n/3log(n/3) + 4T(n/3^2))\\[8]
+  
+  T(n) = nlogn(1 + 4/3 + (4/3)^2 \quad ... \quad (k\quad times)) - nlog3(4/3 + 2(4/3)^2 + 3(4/3)^3\quad ... \quad (k\quad times))\\[8]
+
+  T(n) = 4nlogn -24n + 25n^log_43\\[8]
+  \implies O(nlogn)
+\end{gather*}
+
+\end{document}
+
