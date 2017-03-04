@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 '''
 The Chef is planning a buffet for the DirectiPlex inauguration party, and everyone is invited. On their way in, each guest picks up a sheet of paper containing a random number (this number may be repeated). The guests then sit down on a round table with their friends.
 
